@@ -1,39 +1,4 @@
-<?php
-$con=mysqli_connect("localhost","root","","code4");
- if (session()->has('data')) : 
-    $value = session()->get('data'); 
-    //print_r($result);die;
-  endif;
 
-if(isset($_GET['id']))
-{
-    $Id=$_GET['id'];
-    $sql="select * from request where id='".$Id."'";
-    $result1=mysqli_query($con,$sql);
-    $sql1="select * from donor where id='".$Id."'";
-    $result=mysqli_query($con,$sql1);
-    $value=mysqli_fetch_assoc($result);
-    // $sql2="select * from donor where id='".$Id."'";
-    // $result3=mysqli_query($con,$sql2);
-}
-if(isset($_POST['request']))
-{
-    header("location: request?id='".$_GET['id']."'");
-    exit();
-}   
-if(isset($_POST['donor'])) 
- {
-    mysqli_query($con,"update admin set Donor='Yes' where id='$Id'");
-     header("location: donorbld.php?id=".$value['id']);
-    exit();
-}
- if(isset ($_POST['check']))
- {
-     header("location: checkbld.php?id=".$value['id']);
-     exit();
- }
-
- ?>
 <!DOCTYPE html>
 
 <head>
